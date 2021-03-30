@@ -14,11 +14,15 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9n
     
 })
 
-
 pastSearchBtns.addEventListener('click', dateSelected);
 searchHistArray = [];
 
 let unix = "675925223"
+
+
+
+
+
 
 function getPhaseInfo(unix) {
 
