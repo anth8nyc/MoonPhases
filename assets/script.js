@@ -1,8 +1,6 @@
 let phaseSpanEl = document.querySelector(`.phaseText`)
 let apodEl = document.querySelector(`.apod`)
-
 let pastSearchBtns = document.querySelector(".historyButtonCon");
-
 
 fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9")
 .then(response => response.json())
@@ -17,40 +15,10 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9n
 })
 
 
-function handleSearch(event) {
-  event.preventDefault();
-  
-  // let dateInputVal = document.querySelector('#dateInput').value;
-  
+pastSearchBtns.addEventListener('click', dateSelected);
+searchHistArray = [];
 
-  // Unix converstion function
-
-
-  //
-  
-  date = "675925223"
-    
-    
-  for (let i = 0; i < searchHistArray.length; i++) {
-      
-    if (searchHistArray[i] === date){
-      
-      getPhaseInfo(date)
-      return;    
-    } 
-  }  
-    
-  searchHistArray.unshift(date);
-    
-  storeCities();
-  renderCities();
-   
-  getPhaseInfo(date);
-    
-  
-} 
-
-
+let unix = "675925223"
 
 function getPhaseInfo(unix) {
 
@@ -69,11 +37,6 @@ function getPhaseInfo(unix) {
   })
 
 }
-
-
-
-pastSearchBtns.addEventListener('click', dateSelected);
-searchHistArray = [];
 
 
 function dateSelected(event) {
