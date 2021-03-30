@@ -52,10 +52,10 @@ function handleSearch(event) {
 
 
 
-function getPhaseInfo(date) {
+function getPhaseInfo(unix) {
 
   
-  fetch("https://api.farmsense.net/v1/moonphases/?d="+date)
+  fetch("https://api.farmsense.net/v1/moonphases/?d="+unix)
   .then(response => response.json())
   .then(function(data){
     console.log(data)
