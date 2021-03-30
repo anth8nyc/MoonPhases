@@ -30,3 +30,5 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9n
 
     
 })
+let unix = Date.parse($("2021.3.30").val())
+console.log(unix);
