@@ -1,0 +1,55 @@
+   
+
+        body {
+            /* background: url(https://apod.nasa.gov/apod/image/2103/sprites_beletsky_960.jpg); */
+        }
+        #apod {
+            display: none; 
+        }
+        /* div {
+            float: left;
+            width: 100%;
+            
+        } */
+        .header {
+            background-color:rgb(112, 145, 216);
+        }
+        .leftContainer {
+            background-color: rgb(103, 129, 247);
+            /* width: 30%; */
+            height: 90vh;
+        }
+        .rightContainer {
+            background-color: rgb(104, 46, 240);
+            /* width: 70%; */
+            height: 90vh;
+        }
+        .footer {
+            background-color: rgb(112, 145, 216);
+            height: 5vh;
+        }
+        .moonPhase {
+            background-color: rgb(235, 236, 245);
+            /* width: 15%; */
+            padding: 20px;
+            border-radius: 25px;
+            margin-left: 40px;
+        }
+        .leftContainer label {
+            background-color: lightslategrey;
+
+            /* width: 100%; */
+            /* text-align: center; */
+            /* float: left; */
+            /* padding-block: 25px; */
+        }
+        .rightContainer label { 
+            background-color: midnightblue;
+            color: lightskyblue;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            /* width: 100%; */
+            /* text-align: center; */
+            /* float: left; */
+            /* padding-block: 25px; */
+        }
+
