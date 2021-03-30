@@ -7,6 +7,9 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9n
 .then(function(data){
     
   console.log(data)
+  
+  // let moonPhase = data[0].Phase
+  // console.log(moonPhase)
   let imageLink = data.url
   console.log(imageLink)  
 
@@ -18,10 +21,6 @@ pastSearchBtns.addEventListener('click', dateSelected);
 searchHistArray = [];
 
 let unix = "675925223"
-
-
-
-
 
 
 function getPhaseInfo(unix) {
@@ -52,6 +51,44 @@ function dateSelected(event) {
 // Check/get local storage for past searched dates, parse and set equal to search array
 function init (){
 
+// fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9")
+// .then(response => response.json())
+// .then(function(data){
+  
+//   console.log(data)
+  
+//   let imageLink = data.url
+  
+//   console.log(imageLink)  
+//   document.getElementById("apod").src = imageLink ;
+  
+  
+// });
+
+
+let dateInput = document.querySelector('#datepicker')
+
+$('#datepicker').datepicker({
+  onSelect: function(dateText, inst) {
+    $("#dateCheck").val(dateText);
+    console.log(dateText);
+    let unix = moment(dateText).format("X");
+    console.log(unix);
+    
+    for (let i = 0; i < searchHistArray.length; i++) {
+      if (searchHistArray[i] === unix){
+        getPhaseInfo(unix)
+        return;    
+      } 
+    }  
+    searchHistArray.unshift(unix);
+    storeSearches();
+    renderSearches();
+    getPhaseInfo(unix);  
+
+  }
+  //use unix into API 
+});
   let savedSearches = JSON.parse(localStorage.getItem("searchHistArray"));
   if (savedSearches !== null) {
     searchHistArray = savedSearches;
