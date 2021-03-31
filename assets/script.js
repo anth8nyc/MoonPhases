@@ -1,7 +1,15 @@
 let phaseSpanEl = document.querySelector(`.phaseText`)
+
+let factPhaseEl = document.querySelector(`#factPhase`)
+let factIllumEl = document.querySelector(`#factIllum`)
+let factMNameEl = document.querySelector(`#factMName`)
+let factDSunEl = document.querySelector(`#factDSun`)
+let factDEarthEl = document.querySelector(`#factDEarth`)
+
 let dateSelectedEl = document.querySelector(`#dateSelected`)
 let apodEl = document.querySelector(`.apod`)
 let pastSearchBtns = document.querySelector(".historyButtonCon");
+let clearSearchBtn = document.querySelector("#clearBtn");
 
 fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9")
 .then(response => response.json())
@@ -14,17 +22,19 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9n
   let imageLink = data.url
   console.log(imageLink)  
 
-  document.getElementById("apod").src = imageLink ;
+  // document.getElementById("apod").src = imageLink ;
     
 })
 
-// pastSearchBtns.addEventListener('click', dateSelected);
+pastSearchBtns.addEventListener('click', dateSelected);
+clearSearchBtn.addEventListener('click', clearSearches);
 
 searchHistArray = [];
-let dateInput = document.querySelector('#datepicker')
-
 let unix = ""
 
+let dateInput = document.querySelector('#datepicker')
+
+init();
 
 $('#datepicker').datepicker({
   
@@ -65,16 +75,37 @@ function getPhaseInfo(unix) {
     console.log(data)
   
     let moonPhase = data[0].Phase
+
+    let factPhase = data[0].Phase
+    let factIllum = data[0].Illumination
+    let factMName = data[0].Moon
+    let factDSun = data[0].DistanceToSun
+    let factDEarth = data[0].Distance
+
     console.log(moonPhase)
-    
     phaseSpanEl.textContent = moonPhase;
+
+    factPhaseEl.textContent = factPhase 
+    factIllumEl.textContent = factIllum 
+    factMNameEl.textContent = factMName 
+    factDSunEl.textContent = factDSun 
+    factDEarthEl.textContent = factDEarth 
     
   })
 
 }
 
 function dateSelected(event) {
-  getPhaseInfo(event.target.textContent)
+
+  
+  console.log(event.target.textContent)
+  buttonDate = event.target.textContent
+  let unixB = moment(buttonDate).format("X");
+  console.log(unixB)
+
+  dateSelectedEl.textContent = buttonDate;
+  getPhaseInfo(unixB)
+
 }
 // Check/get local storage for past searched dates, parse and set equal to search array
 function init (){
@@ -100,8 +131,12 @@ function renderSearches () {
   pastSearchBtns.innerHTML = "";
   
   for (var i = 0; i < searchHistArray.length; i++) {
+    
     let dateB = searchHistArray[i];
-    dateHistBtn = $(`<button class="btn btn-info btn-block mb-3 histBtn" id="searchBtn">${dateB}</button>`)
+    let dateDisp = moment.unix(dateB).format("MM/DD/YYYY");
+
+
+    dateHistBtn = $(`<button class="btn btn-info btn-block mb-3 histBtn" id="searchBtn">${dateDisp}</button>`)
     
     $(".historyButtonCon").append(dateHistBtn);
   }
