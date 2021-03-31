@@ -1,7 +1,16 @@
    
 
         body {
-            /* background: url(https://apod.nasa.gov/apod/image/2103/sprites_beletsky_960.jpg); */
+            background: url(https://apod.nasa.gov/apod/image/2103/sprites_beletsky_960.jpg);
+        }
+        button {
+            border-radius: 45%;
+            border-color: whitesmoke;
+            opacity: 0.5;
+            background-color: darkslateblue;
+            color: whitesmoke;
+            padding: 10px;
+            margin: auto;
         }
         #apod {
             display: none; 
@@ -15,18 +24,18 @@
             background-color:rgb(112, 145, 216);
         }
         .leftContainer {
-            background-color: rgb(103, 129, 247);
+            background-color: none;
             /* width: 30%; */
             height: 90vh;
         }
         .rightContainer {
-            background-color: rgb(104, 46, 240);
+            background-color: none);
             /* width: 70%; */
             height: 90vh;
         }
         .footer {
             background-color: rgb(112, 145, 216);
-            height: 5vh;
+            height: 20vh;
         }
         .moonPhase {
             background-color: rgb(235, 236, 245);
@@ -44,12 +53,14 @@
             /* padding-block: 25px; */
         }
         .rightContainer label { 
-            background-color: midnightblue;
-            color: lightskyblue;
+            background-color: rgb(46, 173, 173);
+            color: white;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+            border-radius: 25%;
+            padding: 5px 0px 5px 5px;
             /* width: 100%; */
             /* text-align: center; */
             /* float: left; */
-            /* padding-block: 25px; */
+            
         }
 
