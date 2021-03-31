@@ -28,6 +28,11 @@ let unix = ""
 
 $('#datepicker').datepicker({
   
+  buttonText: "Select date",
+  showOn: "button",
+  buttonImage: "./assets/calendar.png",
+  buttonImageOnly: true,
+
   onSelect: function(dateText, inst) {
     $("#dateCheck").val(dateText);
     console.log(dateText);
@@ -50,8 +55,6 @@ $('#datepicker').datepicker({
     
   },
 
-  buttonImage: "./calendar.png",
-  buttonImageOnly: true,
 });
 
 function getPhaseInfo(unix) {
@@ -94,7 +97,7 @@ function storeSearches (){
 function renderSearches () {
   
   // inner html 
-  // pastSearchBtns.innerHTML = "";
+  pastSearchBtns.innerHTML = "";
   
   for (var i = 0; i < searchHistArray.length; i++) {
     let dateB = searchHistArray[i];

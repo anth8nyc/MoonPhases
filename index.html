@@ -30,7 +30,7 @@
         <div class="row">
            
             <div class="leftContainer col-3 d-flex justify-content-center" >
-                <div class="text-center"> 
+                <div class="text-center historyButtonCon"> 
                     <h3> Past Search Date </h3>
                     <ul><button>🌑 New Moon</button></ul>
                     <ul><button>🌓 First Quarter Moon</button></ul>
@@ -53,7 +53,7 @@
                     
                     <div class="container">
                         <img id="apod" href="">                    
-                        <p class="phaseText"></p>
+                        <h3 class="phaseText"></h3>
                     </div>
                     
                 </div>
@@ -61,12 +61,13 @@
                 
                 <div class="bg-info">
                     
-                    <label class="calenderInput"> Calender Input using jquery</label>
-                    <input type="button" id="datepicker">    
-                 
                     <h4> Date Selected:<h4>
                     <h3 id="dateSelected"></h3>
-                    <p class ="phaseText"></p>
+                    
+                    <label class="calenderInput"> Calender Input using jquery</label>
+                    <input type="text" id="datepicker" style="display: none;"></input>    
+                 
+                    <!-- <p class ="phaseText"></p> -->
             
                 </div>
 
