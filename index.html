@@ -30,17 +30,20 @@
         <div class="row">
            
             <div class="leftContainer col-3 d-flex justify-content-center" >
-                <div class="text-center historyButtonCon"> 
+                <div class="text-center"> 
                     <h3> Past Search Date </h3>
-                    <ul><button>🌑 New Moon</button></ul>
-                    <ul><button>🌓 First Quarter Moon</button></ul>
-                    <ul><button>🌔 Waxing Gibbous Moon</button></ul>
-                    <ul><button>🌕 Full Moon</button></ul>
-                    <ul><button>🌒 Waxing Cresent Moon</button></ul>
-                    <ul><button>🌖 Waning Gibbous Moon</button></ul>
-                    <ul><button>🌗 Last Quarter Moon</button></ul>
-                    <ul><button>🌘 Waning Cresent Moon</button></ul>
-                    <ul><button>🌚 New Moon</button></ul>
+                    <div class="historyButtonCon">
+                        <ul><button>🌑 New Moon</button></ul>
+                        <ul><button>🌓 First Quarter Moon</button></ul>
+                        <ul><button>🌔 Waxing Gibbous Moon</button></ul>
+                        <ul><button>🌕 Full Moon</button></ul>
+                        <ul><button>🌒 Waxing Cresent Moon</button></ul>
+                        <ul><button>🌖 Waning Gibbous Moon</button></ul>
+                        <ul><button>🌗 Last Quarter Moon</button></ul>
+                        <ul><button>🌘 Waning Cresent Moon</button></ul>
+                        <ul><button>🌚 New Moon</button></ul>
+                    </div>
+                    <button class="btn btn-danger btn-block mb-3" id="clearBtn">Clear</button>
                 </div>  
         
         
@@ -48,14 +51,27 @@
 
             <div class="col-9">
 
-                <div class="rightContainer">
-                    
-                    
-                    <div class="container">
-                        <img id="apod" href="">                    
+                <div class="rightContainer container">
+                                        
+                    <div class="container text-center">
                         <h3 class="phaseText"></h3>
                     </div>
+                    <div class="container">
+
+                        <img class="moonView img-fluid rounded mx-auto d-block w-50 h-50" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg">
+
+                    </div>
                     
+                    <div class="container" id="factsCon">
+
+                        <p>Moon Phase:</p><p id="factPhase"></p>
+                        <p>Illumination:</p><p id="factIllum"></p>
+                        <p>Moon Name:</p><p id="factMName"></p>
+                        <p>Distance From Sun:</p><p id="factDSun"></p>
+                        <p>Distance From Earth:</p><p id="factDEarth"></p>
+                        
+                    </div>
+
                 </div>
                 
                 
