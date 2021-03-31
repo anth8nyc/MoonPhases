@@ -1,7 +1,7 @@
    
 
         body {
-            background: url(https://apod.nasa.gov/apod/image/2103/sprites_beletsky_960.jpg);
+            /*background: url(https://apod.nasa.gov/apod/image/2103/sprites_beletsky_960.jpg); */
         }
         button {
             border-radius: 45%;
@@ -29,7 +29,8 @@
             height: 90vh;
         }
         .rightContainer {
-            background-color: none);
+            background-color: blue;
+            opacity: .6;
             /* width: 70%; */
             height: 90vh;
         }
