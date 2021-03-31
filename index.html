@@ -49,26 +49,40 @@
         
             </div>
 
-            <div class="col-9">
+            <div class="col-9 d-flex flex-column">
 
-                <div class="rightContainer container">
+                <div class="rightContainer container flex-column">
                                         
                     <div class="container text-center">
                         <h3 class="phaseText"></h3>
                     </div>
                     <div class="container">
 
-                        <img class="moonView img-fluid rounded mx-auto d-block w-50 h-50" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg">
+                        <img class="moonView img-fluid rounded mx-auto d-block w-25 h-25" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg">
 
                     </div>
                     
-                    <div class="container" id="factsCon">
-
-                        <p>Moon Phase:</p><p id="factPhase"></p>
-                        <p>Illumination:</p><p id="factIllum"></p>
-                        <p>Moon Name:</p><p id="factMName"></p>
-                        <p>Distance From Sun:</p><p id="factDSun"></p>
-                        <p>Distance From Earth:</p><p id="factDEarth"></p>
+                    <div class="bg-danger container-fluid d-flex flex-column" id="factsCon">
+                        
+                        <div class="row justify-content-start">
+                            <p>Moon Phase:</p><p id="factPhase"></p>
+                        </div>
+                        
+                        <div class="row justify-content-start">
+                            <p>Illumination:</p><p id="factIllum"></p>
+                        </div>
+                    
+                        <div class="row justify-content-start">
+                            <p>Moon Name:</p><p id="factMName"></p>
+                        </div>
+                        
+                        <div class="row justify-content-start">
+                            <p>Distance From Sun:</p><p id="factDSun"></p>
+                        </div>
+                        
+                        <div class="row justify-content-start">
+                            <p>Distance From Earth:</p><p id="factDEarth"></p>
+                        </div>
                         
                     </div>
 
