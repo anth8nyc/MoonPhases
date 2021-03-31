@@ -1,4 +1,5 @@
 let phaseSpanEl = document.querySelector(`.phaseText`)
+let dateSelectedEl = document.querySelector(`#dateSelected`)
 let apodEl = document.querySelector(`.apod`)
 let pastSearchBtns = document.querySelector(".historyButtonCon");
 
@@ -17,7 +18,8 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9n
     
 })
 
-pastSearchBtns.addEventListener('click', dateSelected);
+// pastSearchBtns.addEventListener('click', dateSelected);
+
 searchHistArray = [];
 let dateInput = document.querySelector('#datepicker')
 
@@ -25,9 +27,12 @@ let unix = ""
 
 
 $('#datepicker').datepicker({
+  
   onSelect: function(dateText, inst) {
     $("#dateCheck").val(dateText);
     console.log(dateText);
+    dateSelectedEl.textContent = dateText;
+    
     let unix = moment(dateText).format("X");
     console.log(unix);
     
@@ -38,11 +43,15 @@ $('#datepicker').datepicker({
       } 
     }  
     searchHistArray.unshift(unix);
+    console.log(searchHistArray)
     storeSearches();
     renderSearches();
     getPhaseInfo(unix);  
     
-  }  
+  },
+
+  buttonImage: "./calendar.png",
+  buttonImageOnly: true,
 });
 
 function getPhaseInfo(unix) {
@@ -77,7 +86,7 @@ function init (){
 // Unshift date search into search array and stringify to set for local storage
 function storeSearches (){
   
-  localStorage.setItem("searchHistArray", JSON.stringify(searches));
+  localStorage.setItem("searchHistArray", JSON.stringify(searchHistArray));
   
 }
 // Using current search array render buttons with attached unix information  
@@ -85,7 +94,7 @@ function storeSearches (){
 function renderSearches () {
   
   // inner html 
-  pastSearchBtns.innerHTML = "";
+  // pastSearchBtns.innerHTML = "";
   
   for (var i = 0; i < searchHistArray.length; i++) {
     let dateB = searchHistArray[i];
