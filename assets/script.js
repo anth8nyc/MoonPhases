@@ -42,11 +42,14 @@ $('#datepicker').datepicker({
   showOn: "button",
   buttonImage: "./assets/calendar.png",
   buttonImageOnly: true,
+  changeMonth: true, 
+  changeYear: true, 
+  yearRange: "-90:+00",
 
   onSelect: function(dateText, inst) {
     $("#dateCheck").val(dateText);
     console.log(dateText);
-    dateSelectedEl.textContent = dateText;
+    dateSelectedEl.textContent = "Date Selected: " + dateText;
     
     let unix = moment(dateText).format("X");
     console.log(unix);
@@ -84,12 +87,13 @@ function getPhaseInfo(unix) {
 
     console.log(moonPhase)
     phaseSpanEl.textContent = moonPhase;
+    phaseSpanEl.classList.remove("invisible")
 
-    factPhaseEl.textContent = factPhase 
-    factIllumEl.textContent = factIllum 
-    factMNameEl.textContent = factMName 
-    factDSunEl.textContent = factDSun 
-    factDEarthEl.textContent = factDEarth 
+    factPhaseEl.textContent = " " + factPhase 
+    factIllumEl.textContent = " " + factIllum 
+    factMNameEl.textContent = " " + factMName 
+    factDSunEl.textContent = " " + factDSun 
+    factDEarthEl.textContent = " " + factDEarth 
     
   })
 
@@ -103,7 +107,7 @@ function dateSelected(event) {
   let unixB = moment(buttonDate).format("X");
   console.log(unixB)
 
-  dateSelectedEl.textContent = buttonDate;
+  dateSelectedEl.textContent = "Date Selected: " + buttonDate;
   getPhaseInfo(unixB)
 
 }
@@ -169,3 +173,102 @@ function clearSearches (event){
 // });
 
 //use unix into API 
+
+
+///////////////////////////////////
+
+let canvas = document.getElementById("canvas");
+    let c = canvas.getContext("2d");
+
+    let w;
+    let h;
+
+    let setCanvasExtents = () => {
+      w = document.body.clientWidth;
+      h = document.body.clientHeight;
+      canvas.width = w;
+      canvas.height = h;
+    };
+
+    setCanvasExtents();
+
+    window.onresize = () => {
+      setCanvasExtents();
+    };
+
+    let makeStars = count => {
+      let out = [];
+      for (let i = 0; i < count; i++) {
+        let s = {
+          x: Math.random() * 1600 - 800,
+          y: Math.random() * 900 - 450,
+          z: Math.random() * 1000
+        };
+        out.push(s);
+      }
+      return out;
+    };
+
+    let stars = makeStars(10000);
+
+    let clear = () => {
+      c.fillStyle = "black";
+      c.fillRect(0, 0, canvas.width, canvas.height);
+    };
+
+    let putPixel = (x, y, brightness) => {
+      let intensity = brightness * 255;
+      let rgb = "rgb(" + intensity + "," + intensity + "," + intensity + ")";
+      c.fillStyle = rgb;
+      c.fillRect(x, y, 1, 1);
+    };
+
+    let moveStars = distance => {
+      let count = stars.length;
+      for (var i = 0; i < count; i++) {
+        let s = stars[i];
+        s.z -= distance;
+        while (s.z <= 1) {
+          s.z += 1000;
+        }
+      }
+    };
+
+    let prevTime;
+    let initial = time => {
+      prevTime = time;
+      requestAnimationFrame(tick);
+    };
+
+    let tick = time => {
+      let elapsed = time - prevTime;
+      prevTime = time;
+
+      moveStars(elapsed * 0.025);
+
+      clear();
+
+      let cx = w / 2;
+      let cy = h / 2;
+
+      let count = stars.length;
+      for (var i = 0; i < count; i++) {
+        let star = stars[i];
+
+        let x = cx + star.x / (star.z * 0.001);
+        let y = cy + star.y / (star.z * 0.001);
+
+        if (x < 0 || x >= w || y < 0 || y >= h) {
+          continue;
+        }
+
+        let d = star.z / 1000.0;
+        let b = 1 - d * d;
+
+        putPixel(x, y, b);
+      }
+
+      requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(initial);
