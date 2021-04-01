@@ -17,17 +17,6 @@
 
     <div class="container-fluid mpCon">
       
-        <div class="header d-flex row rounded bg-info">
-      
-            <div class="moonPhase">
-                
-                
-                MoonPhaser
-                
-                
-            </div>      
-            
-        </div>
 
         <div class="row">
            
@@ -35,7 +24,7 @@
                 <div class="text-center"> 
                     <h3 class="text-light"> Past Search Date </h3>
                     <div class="historyButtonCon">
-                        <ul><button>🌑 New Moon</button></ul>
+                        <!-- <ul><button>🌑 New Moon</button></ul>
                         <ul><button>🌓 First Quarter Moon</button></ul>
                         <ul><button>🌔 Waxing Gibbous Moon</button></ul>
                         <ul><button>🌕 Full Moon</button></ul>
@@ -43,7 +32,7 @@
                         <ul><button>🌖 Waning Gibbous Moon</button></ul>
                         <ul><button>🌗 Last Quarter Moon</button></ul>
                         <ul><button>🌘 Waning Cresent Moon</button></ul>
-                        <ul><button>🌚 New Moon</button></ul>
+                        <ul><button>🌚 New Moon</button></ul> -->
                     </div>
                     <button class="btn btn-danger btn-block my-3" id="clearBtn">Clear</button>
                 </div>  
@@ -51,50 +40,52 @@
         
             </div>
 
-            <div class="col-10 d-flex align-items-start flex-column ">
+            <div class="col-10 d-flex align-items-start flex-column p-50">
 
                 <div class="rightContainer container d-flex align-items-start flex-column rounded">
                                         
-                    <div class="container text-center text-light">
-                        <h3 class="phaseText invisible">Moon Phase</h3>
+                    <div class="mHead container text-center text-light">
+                        <h3 class="phaseText">Moon Phase</h3>
                     </div>
-                    <div class="container-fluid">
+                    <div class="mView container-fluid">
 
-                        <img class="moonView img-fluid rounded mx-auto d-block w-25" id="moonDisplay" src="assets/moons/fullmoon.jpg">
+                        <img class="moonView img-fluid rounded mx-auto d-block w-25" id="moonDisplay" src="">
 
                     </div>
                     
-                    <div class="bg-info container-fluid d-flex flex-column mt-auto rounded text-light" id="factsCon">
+                    <div class="mFacts bg-info container-fluid d-flex flex-column mt-auto rounded text-light" id="factsCon">
                         
                         <div class="row justify-content-start ml-1">
-                            <p>Moon Phase: </p><p id="factPhase"></p>
+                            <p id="factPhase"></p>
                         </div>
                         
                         <div class="row justify-content-start ml-1">
-                            <p>Illumination: </p><p id="factIllum"></p>
+                            <p id="factIllum"></p>
                         </div>
                     
                         <div class="row justify-content-start ml-1">
-                            <p>Moon Name: </p><p id="factMName"></p>
+                            <p id="factMName"></p>
                         </div>
                         
                         <div class="row justify-content-start ml-1">
-                            <p>Distance From Sun: </p><p id="factDSun"></p>
+                            <p id="factDSun"></p>
                         </div>
                         
                         <div class="row justify-content-start ml-1">
-                            <p>Distance From Earth: </p><p id="factDEarth"></p>
+                            <p id="factDEarth"></p>
                         </div>
                         
                     </div>
 
-                    <div class="w-50 p-2 bg-info container-fluid d-flex mt-auto justify-content-between align-items-center rounded">
+                    <div class="w-auto p-2 bg-info container-fluid d-flex mt-1 justify-content-between align-items-center rounded">
                         
-                        <div class="row text-light ml-1">
-                            <h4 id="dateSelected"></h4>            
+                        <div class="row text-light mx-1">
+                            <h4 class="my-auto" id="dateSelected"></h4>            
                         </div>
-                
-                        <input type="text" id="datepicker" style="display: none;"></input>    
+                        
+                        <div class="justify-content-between">
+                            <input type="text" id="datepicker" style="display: none;"></input>    
+                        </div>
                         
                 
                     </div>
@@ -110,14 +101,17 @@
                 
                     
         </div>
+            
         
-        <!-- <nav class="navbar row fixed-bottom navbar-light bg-danger">
-            <a class="navbar-brand" href="#">Fixed bottom</a>
-        </nav> -->
-
     </div>
+    <nav class="navbar row mt-1 navbar-light text-light bg-danger">
     
+        <a class="navbar-brand ml-5 text-light" href="#">MoonPhaser</a>
+        <p id="currentDay" class="lead"></p>
 
+    
+    </nav>    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

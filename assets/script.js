@@ -1,5 +1,6 @@
 let phaseSpanEl = document.querySelector(`.phaseText`)
 
+let factsConEl = document.querySelector(`#factsCon`)
 let factPhaseEl = document.querySelector(`#factPhase`)
 let factIllumEl = document.querySelector(`#factIllum`)
 let factMNameEl = document.querySelector(`#factMName`)
@@ -7,24 +8,73 @@ let factDSunEl = document.querySelector(`#factDSun`)
 let factDEarthEl = document.querySelector(`#factDEarth`)
 
 let dateSelectedEl = document.querySelector(`#dateSelected`)
-let apodEl = document.querySelector(`.apod`)
 let pastSearchBtns = document.querySelector(".historyButtonCon");
 let clearSearchBtn = document.querySelector("#clearBtn");
 
-fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9")
-.then(response => response.json())
-.then(function(data){
-    
-  console.log(data)
-  
-  // let moonPhase = data[0].Phase
-  // console.log(moonPhase)
-  let imageLink = data.url
-  console.log(imageLink)  
+let mHeadEl = document.querySelector(`.mHead`)
+let mViewEl = document.querySelector(`.mView`)
+let mFactsEl = document.querySelector(`.mFacts`)
 
-  // document.getElementById("apod").src = imageLink ;
+
+let moonDisplayEl = document.getElementById("moonDisplay");
+
+
+function nasaAPOD() {
+  
+  fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9&date=2017-07-08")
+    .then(response => response.json())
+    .then(function(data){
     
-})
+    console.log(data)
+    let apodType = data.media_type;
+    let apodURL = data.url;
+    console.log(apodURL) 
+    mViewEl.classList.add("d-none")
+    mHeadEl.classList.add("d-none")
+    mFactsEl.classList.add("invisible")
+
+    let apodCon = $(`<div class="my-auto apodCon container text-light text-center"></div>`)
+    
+    $(".rightContainer").prepend(apodCon);
+
+    if(apodType == "image"){
+
+      let apodImg = $(`<div class="row justify-content-center">
+      <img class="rounded" id="apodImg" style="width: 38%" src="${apodURL}">
+      </div>`);
+      
+      $(".apodCon").append(apodImg);
+
+      
+    } else if (apodType == "video"){
+
+      let apodVid = $(`<div class="row">
+      <iframe class="apodVid" width="250px" src="${apodURL}"></iframe>
+      </div>`);
+            
+      $(".apodCon").append(apodVid);
+
+    } else {
+
+      let apodError = $(`<div class="row text-center bg-danger rounded mb-5">
+            <h5 class="text-light">We had trouble loading the NASA APOD media! 
+            Please visit their site directly at: <a href="https://apod.nasa.gov/apod/astropix.html">apod.nasa.gov</a>
+            </h5>
+            </div>`);
+            
+        $(".apodCon").append(apodError);
+
+    }
+
+
+
+  })
+
+
+
+  
+
+};
 
 // let stormapi = "1f5e8eca-92f4-11eb-b01a-0242ac130002-1f5e8f7e-92f4-11eb-b01a-0242ac130002"
 
@@ -51,6 +101,27 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9n
 
 // }
 
+let todaysDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+
+
+
+let datetime = null;
+let date = null;
+
+function update() {
+  date = moment(new Date())
+  datetime.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));
+};
+
+$(document).ready(function(){
+    datetime = $('#currentDay')
+    update();
+    setInterval(update, 1000);
+});
+
+
+
+
 
 pastSearchBtns.addEventListener('click', dateSelected);
 clearSearchBtn.addEventListener('click', clearSearches);
@@ -73,9 +144,15 @@ $('#datepicker').datepicker({
   yearRange: "-90:+00",
 
   onSelect: function(dateText, inst) {
+
+    apodConEl.remove();
+    mViewEl.classList.remove("d-none")
+    mHeadEl.classList.remove("d-none")
+    mFactsEl.classList.remove("invisible")
+
     $("#dateCheck").val(dateText);
     console.log(dateText);
-    dateSelectedEl.textContent = "Date Selected: " + dateText;
+    dateSelectedEl.textContent = "Date Selected: " + dateText + " ";
     
     let unix = moment(dateText).format("X");
     console.log(unix);
@@ -114,13 +191,15 @@ function getPhaseInfo(unix) {
 
     console.log(moonPhase)
     phaseSpanEl.textContent = moonPhase;
-    phaseSpanEl.classList.remove("invisible")
+    
+    // phaseSpanEl.classList.remove("invisible")
+    // factsConEl.classList.remove("invisible")
 
-    factPhaseEl.textContent = " " + factPhase 
-    factIllumEl.textContent = " " + factIllum 
-    factMNameEl.textContent = " " + factMName 
-    factDSunEl.textContent = " " + factDSun 
-    factDEarthEl.textContent = " " + factDEarth 
+    factPhaseEl.textContent = "Moon Phase: " + factPhase 
+    factIllumEl.textContent = "Illumination: " + factIllum 
+    factMNameEl.textContent = "Full Moon Cycle Name: " + factMName 
+    factDSunEl.textContent = "Distance from the Sun: " + factDSun 
+    factDEarthEl.textContent = "Distance from the Earth: " + factDEarth 
     
 
   })
@@ -128,7 +207,6 @@ function getPhaseInfo(unix) {
 }
 
 function moonPhoto(moonPhase) {
-  let moonDisplayEl = document.getElementById("moonDisplay")
 
   if (moonPhase === "Waxing Crescent") {
     moonDisplayEl.src = "assets/moons/waxingcrescent.jpg"
@@ -176,6 +254,7 @@ function init (){
     searchHistArray = savedSearches;
   }
   
+  nasaAPOD();
   renderSearches();
   
 }
@@ -208,6 +287,9 @@ function renderSearches () {
 function clearSearches (event){
   
   event.preventDefault();
+  dateSelectedEl.textContent = "";
+  
+  nasaAPOD();
   searchHistArray = [];
   renderSearches();
   storeSearches();
@@ -221,9 +303,9 @@ function clearSearches (event){
 // .then(response => response.json())
 // .then(function(data){
   
-  //   console.log(data)
+//     console.log(data)
   
-  //   let imageLink = data.url
+//     let imageLink = data.url
   
 //   console.log(imageLink)  
 //   document.getElementById("apod").src = imageLink ;

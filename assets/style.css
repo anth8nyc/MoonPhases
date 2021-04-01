@@ -3,6 +3,7 @@
         body {
             /*background: url(https://apod.nasa.gov/apod/image/2103/sprites_beletsky_960.jpg); */
             background-color: black;
+            font-family: futura;
         }
         button {
             border-radius: 45%;
@@ -80,3 +81,9 @@
             left: 0;
         }  
 
+
+        .ui-datepicker-trigger { 
+            position:relative;
+            height: 30px;
+            
+        }
