@@ -2,11 +2,12 @@
 
         body {
             /*background: url(https://apod.nasa.gov/apod/image/2103/sprites_beletsky_960.jpg); */
+            background-color: black;
         }
         button {
             border-radius: 45%;
             border-color: whitesmoke;
-            opacity: 0.5;
+            /* opacity: 0.5; */
             background-color: darkslateblue;
             color: whitesmoke;
             padding: 10px;
@@ -29,8 +30,8 @@
             /* height: 90vh; */
         }
         .rightContainer {
-            background-color: blue;
-            opacity: .6;
+            /* background-color: blue; */
+            /* opacity: .6; */
             /* width: 70%; */
             height: 90vh;
         }
@@ -64,4 +65,18 @@
             /* float: left; */
             
         }
+
+
+        /* ///////////////////////////////// */
+        .mpCon {
+            z-index: 1;
+        }
+
+        #canvas {
+
+            z-index: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }  
 
