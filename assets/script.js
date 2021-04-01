@@ -26,6 +26,32 @@ fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9n
     
 })
 
+// let stormapi = "1f5e8eca-92f4-11eb-b01a-0242ac130002-1f5e8f7e-92f4-11eb-b01a-0242ac130002"
+
+// const lat = 58.7984;
+// const lng = 17.8081;
+// const start = 1549312452;
+
+
+// fetch(`https://api.stormglass.io/v2/astronomy/point?lat=${lat}&lng=${lng}&start=${start}`, {
+//   headers: {
+//     'Authorization': stormapi
+//   }
+// }).then((response) => response.json()).then((data) => {
+//   // Do something with response data.
+//   console.log(data)
+
+// });
+
+// stormData(mooninfo);
+
+// function stormData (jsonData) {
+
+//   console.log(jsonData)
+
+// }
+
+
 pastSearchBtns.addEventListener('click', dateSelected);
 clearSearchBtn.addEventListener('click', clearSearches);
 
@@ -78,6 +104,7 @@ function getPhaseInfo(unix) {
     console.log(data)
   
     let moonPhase = data[0].Phase
+    moonPhoto(moonPhase);
 
     let factPhase = data[0].Phase
     let factIllum = data[0].Illumination
@@ -95,9 +122,40 @@ function getPhaseInfo(unix) {
     factDSunEl.textContent = " " + factDSun 
     factDEarthEl.textContent = " " + factDEarth 
     
+
   })
 
 }
+
+function moonPhoto(moonPhase) {
+  let moonDisplayEl = document.getElementById("moonDisplay")
+
+  if (moonPhase === "Waxing Crescent") {
+    moonDisplayEl.src = "assets/moons/waxingcrescent.jpg"
+    
+  } else if (moonPhase ==="Waxing Gibbous") {
+    moonDisplayEl.src = "assets/moons/waxinggibbous.jpg"
+    
+  } else if (moonPhase ==="1st Quarter") {
+    moonDisplayEl.src = "assets/moons/firstquarter.jpg"
+    
+  } else if (moonPhase ==="3rd Quarter") {
+    moonDisplayEl.src = "assets/moons/thirdquarter.jpg"
+    
+  } else if (moonPhase ==="Waning Crescent") {
+    moonDisplayEl.src = "assets/moons/waningcrescent.png"
+    
+  } else if (moonPhase ==="Waning Gibbous") {
+    moonDisplayEl.src = "assets/moons/waninggibbous.jpg"
+    
+  } else if (moonPhase ==="Full Moon") {
+    moonDisplayEl.src = "assets/moons/fullmoon.jpg"
+    
+  } else if (moonPhase ==="New Moon") {
+    moonDisplayEl.src = "assets/moons/newmoon.jpeg"
+
+  };
+};
 
 function dateSelected(event) {
 
@@ -244,7 +302,7 @@ let canvas = document.getElementById("canvas");
       let elapsed = time - prevTime;
       prevTime = time;
 
-      moveStars(elapsed * 0.025);
+      moveStars(elapsed * 0.05);
 
       clear();
 
