@@ -21,6 +21,8 @@ let moonDisplayEl = document.getElementById("moonDisplay");
 
 function nasaAPOD() {
   
+  // fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9")
+  // fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9&date=2021-04-01")
   fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9&date=2017-07-08")
     .then(response => response.json())
     .then(function(data){
@@ -33,7 +35,7 @@ function nasaAPOD() {
     mHeadEl.classList.add("d-none")
     mFactsEl.classList.add("invisible")
 
-    let apodCon = $(`<div class="my-auto apodCon container text-light text-center"></div>`)
+    let apodCon = $(`<div class="my-auto apodCon container text-light text-center"><h5 class="text-center text-light">NASA Astronomy Picture of the Day</h5></div>`)
     
     $(".rightContainer").prepend(apodCon);
 
@@ -48,8 +50,8 @@ function nasaAPOD() {
       
     } else if (apodType == "video"){
 
-      let apodVid = $(`<div class="row">
-      <iframe class="apodVid" width="250px" src="${apodURL}"></iframe>
+      let apodVid = $(`<div class="row justify-content-center">
+      <iframe class="apodVid" width="500px" height="300px" src="${apodURL}"></iframe>
       </div>`);
             
       $(".apodCon").append(apodVid);
@@ -104,7 +106,6 @@ function nasaAPOD() {
 let todaysDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 
 
-
 let datetime = null;
 let date = null;
 
@@ -145,7 +146,7 @@ $('#datepicker').datepicker({
 
   onSelect: function(dateText, inst) {
 
-    apodConEl.remove();
+    $( ".apodCon" ).remove();
     mViewEl.classList.remove("d-none")
     mHeadEl.classList.remove("d-none")
     mFactsEl.classList.remove("invisible")
@@ -235,6 +236,7 @@ function moonPhoto(moonPhase) {
   };
 };
 
+// Reruns the content console for selected date on search history buttons
 function dateSelected(event) {
 
   
@@ -286,6 +288,7 @@ function renderSearches () {
 // Clear the buttons and search array, and calls upon render/store to clear and set to local storage
 function clearSearches (event){
   
+  $( ".apodCon" ).remove();
   event.preventDefault();
   dateSelectedEl.textContent = "";
   
@@ -298,23 +301,7 @@ function clearSearches (event){
 
 
 
-
-// fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9")
-// .then(response => response.json())
-// .then(function(data){
-  
-//     console.log(data)
-  
-//     let imageLink = data.url
-  
-//   console.log(imageLink)  
-//   document.getElementById("apod").src = imageLink ;
-
-// });
-
-//use unix into API 
-
-
+// Star field
 ///////////////////////////////////
 
 let canvas = document.getElementById("canvas");
@@ -323,17 +310,17 @@ let canvas = document.getElementById("canvas");
     let w;
     let h;
 
-    let setCanvasExtents = () => {
+    let canvasSize = () => {
       w = document.body.clientWidth;
       h = document.body.clientHeight;
       canvas.width = w;
       canvas.height = h;
     };
 
-    setCanvasExtents();
+    canvasSize();
 
     window.onresize = () => {
-      setCanvasExtents();
+      canvasSize();
     };
 
     let makeStars = count => {
@@ -384,7 +371,7 @@ let canvas = document.getElementById("canvas");
       let elapsed = time - prevTime;
       prevTime = time;
 
-      moveStars(elapsed * 0.05);
+      moveStars(elapsed * 0.04);
 
       clear();
 
