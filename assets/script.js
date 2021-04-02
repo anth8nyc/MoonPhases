@@ -111,7 +111,7 @@ $('#datepicker').datepicker({
   buttonImageOnly: true,
   changeMonth: true, 
   changeYear: true, 
-  yearRange: "-90:+00",
+  yearRange: "-90:+90",
 
   onSelect: function(dateText, inst) {
 
