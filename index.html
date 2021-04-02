@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoonPhaser</title>
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/style.css">
@@ -24,15 +25,6 @@
                 <div class="text-center"> 
                     <h3 class="text-light">Search History</h3>
                     <div class="historyButtonCon">
-                        <!-- <ul><button>🌑 New Moon</button></ul>
-                        <ul><button>🌓 First Quarter Moon</button></ul>
-                        <ul><button>🌔 Waxing Gibbous Moon</button></ul>
-                        <ul><button>🌕 Full Moon</button></ul>
-                        <ul><button>🌒 Waxing Cresent Moon</button></ul>
-                        <ul><button>🌖 Waning Gibbous Moon</button></ul>
-                        <ul><button>🌗 Last Quarter Moon</button></ul>
-                        <ul><button>🌘 Waning Cresent Moon</button></ul>
-                        <ul><button>🌚 New Moon</button></ul> -->
                     </div>
                     <button class="btn btn-danger btn-block my-3" id="clearBtn">Clear</button>
                 </div>  
@@ -45,7 +37,7 @@
                 <div class="rightContainer container d-flex align-items-start flex-column rounded">
                                         
                     <div class="mHead container text-center text-light">
-                        <h3 class="phaseText">Moon Phase</h3>
+                        <h3 class="phaseText"></h3>
                     </div>
                     <div class="mView container-fluid">
 
@@ -53,7 +45,7 @@
 
                     </div>
                     
-                    <div class="mFacts bg-info container-fluid d-flex flex-column mt-auto rounded text-light" id="factsCon">
+                    <div class="mFacts d-none bg-info container-fluid flex-column mt-auto rounded text-light" id="factsCon">
                         
                         <div class="row justify-content-start ml-1">
                             <p id="factPhase"></p>

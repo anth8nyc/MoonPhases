@@ -15,15 +15,16 @@ let mHeadEl = document.querySelector(`.mHead`)
 let mViewEl = document.querySelector(`.mView`)
 let mFactsEl = document.querySelector(`.mFacts`)
 
-
 let moonDisplayEl = document.getElementById("moonDisplay");
 
+let todaysDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 
 function nasaAPOD() {
   
-  // fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9")
+  fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9")
+  // fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb0")
   // fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9&date=2021-04-01")
-  fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9&date=2017-07-08")
+  // fetch("https://api.nasa.gov/planetary/apod?api_key=U61IPOajBkfKLl3G6HYZAV3GIsW9nhyLb030wyt9&date=2017-07-08")
     .then(response => response.json())
     .then(function(data){
     
@@ -33,16 +34,16 @@ function nasaAPOD() {
     console.log(apodURL) 
     mViewEl.classList.add("d-none")
     mHeadEl.classList.add("d-none")
-    mFactsEl.classList.add("invisible")
+    mFactsEl.classList.add("d-none")
 
-    let apodCon = $(`<div class="my-auto apodCon container text-light text-center"><h5 class="text-center text-light">NASA Astronomy Picture of the Day</h5></div>`)
+    let apodCon = $(`<div class="apodCon container text-light text-center"><h5 class="text-center text-light">NASA Astronomy Picture of the Day</h5></div>`)
     
     $(".rightContainer").prepend(apodCon);
 
     if(apodType == "image"){
 
-      let apodImg = $(`<div class="row justify-content-center">
-      <img class="rounded" id="apodImg" style="width: 38%" src="${apodURL}">
+      let apodImg = $(`<div class="justify-content-center">
+      <img class="ltgray" style="width: 38%" src="${apodURL}">
       </div>`);
       
       $(".apodCon").append(apodImg);
@@ -50,8 +51,8 @@ function nasaAPOD() {
       
     } else if (apodType == "video"){
 
-      let apodVid = $(`<div class="row justify-content-center">
-      <iframe class="apodVid" width="500px" height="300px" src="${apodURL}"></iframe>
+      let apodVid = $(`<div class="justify-content-center">
+      <iframe class="apodVid ltgray" width="500px" height="300px" src="${apodURL}"></iframe>
       </div>`);
             
       $(".apodCon").append(apodVid);
@@ -60,7 +61,7 @@ function nasaAPOD() {
 
       let apodError = $(`<div class="row text-center bg-danger rounded mb-5">
             <h5 class="text-light">We had trouble loading the NASA APOD media! 
-            Please visit their site directly at: <a href="https://apod.nasa.gov/apod/astropix.html">apod.nasa.gov</a>
+            Please visit their site directly at: <a class="text-info" href="https://apod.nasa.gov/apod/astropix.html">apod.nasa.gov</a>
             </h5>
             </div>`);
             
@@ -68,44 +69,11 @@ function nasaAPOD() {
 
     }
 
-
-
-  })
-
-
-
-  
+  })  
 
 };
 
-// let stormapi = "1f5e8eca-92f4-11eb-b01a-0242ac130002-1f5e8f7e-92f4-11eb-b01a-0242ac130002"
-
-// const lat = 58.7984;
-// const lng = 17.8081;
-// const start = 1549312452;
-
-
-// fetch(`https://api.stormglass.io/v2/astronomy/point?lat=${lat}&lng=${lng}&start=${start}`, {
-//   headers: {
-//     'Authorization': stormapi
-//   }
-// }).then((response) => response.json()).then((data) => {
-//   // Do something with response data.
-//   console.log(data)
-
-// });
-
-// stormData(mooninfo);
-
-// function stormData (jsonData) {
-
-//   console.log(jsonData)
-
-// }
-
-let todaysDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-
-
+// Updates current time and date in header
 let datetime = null;
 let date = null;
 
@@ -121,6 +89,7 @@ $(document).ready(function(){
 });
 
 
+init();
 
 
 
@@ -132,8 +101,8 @@ let unix = ""
 
 let dateInput = document.querySelector('#datepicker')
 
-init();
-
+//Date picker with unix conversion included for API Call
+// Acts opposite clear button to remove start screen/apod content vs phase content
 $('#datepicker').datepicker({
   
   buttonText: "Select date",
@@ -149,7 +118,7 @@ $('#datepicker').datepicker({
     $( ".apodCon" ).remove();
     mViewEl.classList.remove("d-none")
     mHeadEl.classList.remove("d-none")
-    mFactsEl.classList.remove("invisible")
+    mFactsEl.classList.remove("d-none")
 
     $("#dateCheck").val(dateText);
     console.log(dateText);
@@ -173,7 +142,7 @@ $('#datepicker').datepicker({
   },
 
 });
-
+// API call for moon phase data
 function getPhaseInfo(unix) {
 
   fetch("https://api.farmsense.net/v1/moonphases/?d="+unix)
@@ -193,48 +162,47 @@ function getPhaseInfo(unix) {
     console.log(moonPhase)
     phaseSpanEl.textContent = moonPhase;
     
-    // phaseSpanEl.classList.remove("invisible")
-    // factsConEl.classList.remove("invisible")
-
     factPhaseEl.textContent = "Moon Phase: " + factPhase 
     factIllumEl.textContent = "Illumination: " + factIllum 
     factMNameEl.textContent = "Full Moon Cycle Name: " + factMName 
-    factDSunEl.textContent = "Distance from the Sun: " + factDSun 
-    factDEarthEl.textContent = "Distance from the Earth: " + factDEarth 
+    factDSunEl.textContent = "Distance from the Sun: " + factDSun + "km"
+    factDEarthEl.textContent = "Distance from the Earth: " + factDEarth  + "km"
     
 
   })
 
 }
 
+// Supplies the correct moon phase picture to the page from date info
 function moonPhoto(moonPhase) {
 
   if (moonPhase === "Waxing Crescent") {
-    moonDisplayEl.src = "assets/moons/waxingcrescent.jpg"
+    moonDisplayEl.src = "assets/moons/waxingcrescent.png"
     
   } else if (moonPhase ==="Waxing Gibbous") {
-    moonDisplayEl.src = "assets/moons/waxinggibbous.jpg"
+    moonDisplayEl.src = "assets/moons/waxinggibbous.png"
     
   } else if (moonPhase ==="1st Quarter") {
-    moonDisplayEl.src = "assets/moons/firstquarter.jpg"
+    moonDisplayEl.src = "assets/moons/firstquarter.png"
     
   } else if (moonPhase ==="3rd Quarter") {
-    moonDisplayEl.src = "assets/moons/thirdquarter.jpg"
+    moonDisplayEl.src = "assets/moons/thirdquarter.png"
     
   } else if (moonPhase ==="Waning Crescent") {
     moonDisplayEl.src = "assets/moons/waningcrescent.png"
     
   } else if (moonPhase ==="Waning Gibbous") {
-    moonDisplayEl.src = "assets/moons/waninggibbous.jpg"
+    moonDisplayEl.src = "assets/moons/waninggibbous.png"
     
   } else if (moonPhase ==="Full Moon") {
-    moonDisplayEl.src = "assets/moons/fullmoon.jpg"
+    moonDisplayEl.src = "assets/moons/fullmoon.png"
     
   } else if (moonPhase ==="New Moon") {
-    moonDisplayEl.src = "assets/moons/newmoon.jpeg"
+    moonDisplayEl.src = "assets/moons/newmoon.png"
 
   };
 };
+
 
 // Reruns the content console for selected date on search history buttons
 function dateSelected(event) {
@@ -304,6 +272,7 @@ function clearSearches (event){
 // Star field
 ///////////////////////////////////
 
+//Extends the canvas element to entire window size and adds resizing capabilities to follow window
 let canvas = document.getElementById("canvas");
     let c = canvas.getContext("2d");
 
@@ -322,7 +291,7 @@ let canvas = document.getElementById("canvas");
     window.onresize = () => {
       canvasSize();
     };
-
+    // Randomly generates star coordinates on xyz plane
     let makeStars = count => {
       let out = [];
       for (let i = 0; i < count; i++) {
@@ -335,21 +304,21 @@ let canvas = document.getElementById("canvas");
       }
       return out;
     };
-
+    //Calls above random coordinate generator times 10000
     let stars = makeStars(10000);
 
     let clear = () => {
       c.fillStyle = "black";
       c.fillRect(0, 0, canvas.width, canvas.height);
     };
-
+    //Give stars pixel brightness to display at given coordinates
     let putPixel = (x, y, brightness) => {
       let intensity = brightness * 255;
       let rgb = "rgb(" + intensity + "," + intensity + "," + intensity + ")";
       c.fillStyle = rgb;
       c.fillRect(x, y, 1, 1);
     };
-
+    //changes z coordinate for stars to move forwards
     let moveStars = distance => {
       let count = stars.length;
       for (var i = 0; i < count; i++) {
@@ -360,7 +329,7 @@ let canvas = document.getElementById("canvas");
         }
       }
     };
-
+    // Changes refresh and therefore star movement speed
     let prevTime;
     let initial = time => {
       prevTime = time;

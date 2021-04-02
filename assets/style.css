@@ -1,39 +1,27 @@
    
 
         body {
-            /*background: url(https://apod.nasa.gov/apod/image/2103/sprites_beletsky_960.jpg); */
             background-color: black;
-            font-family: futura;
-        }
+            font-family: 'Space Mono', monospace; 
+       }
         button {
             border-radius: 45%;
             border-color: whitesmoke;
-            /* opacity: 0.5; */
             background-color: darkslateblue;
             color: whitesmoke;
             padding: 10px;
             margin: auto;
         }
-        /* #apod { */
-            /* display: none;  */
-        /* } */
-        /* div {
-            float: left;
-            width: 100%;
-            
-        } */
+        
         .header {
             background-color:rgb(112, 145, 216);
         }
         .leftContainer {
             background-color: none;
-            /* width: 30%; */
-            /* height: 90vh; */
+            
         }
         .rightContainer {
-            /* background-color: blue; */
-            /* opacity: .6; */
-            /* width: 70%; */
+            
             height: 90vh;
         }
         .footer {
@@ -42,7 +30,6 @@
         }
         .moonPhase {
             background-color: rgb(235, 236, 245);
-            /* width: 15%; */
             padding: 20px;
             border-radius: 25px;
             margin-left: 40px;
@@ -50,10 +37,7 @@
         .leftContainer label {
             background-color: lightslategrey;
 
-            /* width: 100%; */
-            /* text-align: center; */
-            /* float: left; */
-            /* padding-block: 25px; */
+         
         }
         .rightContainer label { 
             background-color: rgb(46, 173, 173);
@@ -61,14 +45,16 @@
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             border-radius: 25%;
             padding: 5px 0px 5px 5px;
-            /* width: 100%; */
-            /* text-align: center; */
-            /* float: left; */
+           
             
         }
 
+        .ltgray{
+            border-radius: 15px;
+            border-color: gray;
+            border-style: solid;
+        }
 
-        /* ///////////////////////////////// */
         .mpCon {
             z-index: 1;
         }
