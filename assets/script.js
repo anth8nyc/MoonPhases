@@ -18,6 +18,7 @@ let mFactsEl = document.querySelector(`.mFacts`)
 let moonDisplayEl = document.getElementById("moonDisplay");
 
 let todaysDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+let searchHistArray = [];
 
 function nasaAPOD() {
   
@@ -96,7 +97,6 @@ init();
 pastSearchBtns.addEventListener('click', dateSelected);
 clearSearchBtn.addEventListener('click', clearSearches);
 
-searchHistArray = [];
 let unix = ""
 
 let dateInput = document.querySelector('#datepicker')
