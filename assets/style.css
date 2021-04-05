@@ -73,3 +73,11 @@
             height: 30px;
             
         }
+
+        .bgBlue{
+            background-color: #0B3D91; 
+        }
+
+        .bgRed{
+            background-color: #db1212;
+        }

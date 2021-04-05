@@ -60,7 +60,7 @@ function nasaAPOD() {
 
     } else {
 
-      let apodError = $(`<div class="row text-center bg-danger rounded mb-5">
+      let apodError = $(`<div class="row text-center bgRed rounded mb-5">
             <h5 class="text-light">We had trouble loading the NASA APOD media! 
             Please visit their site directly at: <a class="text-info" href="https://apod.nasa.gov/apod/astropix.html">apod.nasa.gov</a>
             </h5>
@@ -247,7 +247,7 @@ function renderSearches () {
     let dateDisp = moment.unix(dateB).format("MM/DD/YYYY");
 
 
-    dateHistBtn = $(`<button class="btn btn-info btn-block mb-3 histBtn" id="searchBtn">${dateDisp}</button>`)
+    dateHistBtn = $(`<button class="btn bgBlue text-light btn-block mb-3 histBtn" id="searchBtn">${dateDisp}</button>`)
     
     $(".historyButtonCon").append(dateHistBtn);
   }
