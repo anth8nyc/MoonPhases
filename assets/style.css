@@ -1,83 +1,55 @@
-   
+body {
+  background-color: black;
+  font-family: "Space Mono", monospace;
+}
+button {
+  border-radius: 45%;
+  border-color: whitesmoke;
+  background-color: darkslateblue;
+  color: whitesmoke;
+  padding: 10px;
+  margin: auto;
+}
 
-        body {
-            background-color: black;
-            font-family: 'Space Mono', monospace; 
-       }
-        button {
-            border-radius: 45%;
-            border-color: whitesmoke;
-            background-color: darkslateblue;
-            color: whitesmoke;
-            padding: 10px;
-            margin: auto;
-        }
-        
-        .header {
-            background-color:rgb(112, 145, 216);
-        }
-        .leftContainer {
-            background-color: none;
-            
-        }
-        .rightContainer {
-            
-            height: 90vh;
-        }
-        .footer {
-            background-color: rgb(112, 145, 216);
-            height: 20vh;
-        }
-        .moonPhase {
-            background-color: rgb(235, 236, 245);
-            padding: 20px;
-            border-radius: 25px;
-            margin-left: 40px;
-        }
-        .leftContainer label {
-            background-color: lightslategrey;
+.historyButtonCon {
+  max-height: 70vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
-         
-        }
-        .rightContainer label { 
-            background-color: rgb(46, 173, 173);
-            color: white;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            border-radius: 25%;
-            padding: 5px 0px 5px 5px;
-           
-            
-        }
+.historyButtonCon::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+.historyButtonCon::-webkit-scrollbar:vertical {
+  width: 7px;
+}
+.historyButtonCon::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+.historyButtonCon::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid #db1212; /* should match background, can't be transparent */
+  background-color: #de4b4bbe;
+}
 
-        .ltgray{
-            border-radius: 15px;
-            border-color: gray;
-            border-style: solid;
-        }
+.mpCon {
+  z-index: 1;
+}
 
-        .mpCon {
-            z-index: 1;
-        }
+#canvas {
+  z-index: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 
-        #canvas {
-
-            z-index: 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }  
-
-
-        .ui-datepicker-trigger { 
-            position:relative;
-            height: 30px;
-            
-        }
-
-        .bgBlue{
-            background-color: #0B3D91; 
-        }
-
-        .bgRed{
-            background-color: #db1212;
-        }
+.ui-datepicker-trigger {
+  position: relative;
+  height: 30px;
+}
+.bgBlue {
+  background-color: #0b3d91;
+}
+.bgRed {
+  background-color: #db1212;
+}

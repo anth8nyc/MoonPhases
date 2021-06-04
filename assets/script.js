@@ -246,6 +246,10 @@ function renderSearches () {
     let dateB = searchHistArray[i];
     let dateDisp = moment.unix(dateB).format("MM/DD/YYYY");
 
+    console.log(searchHistArray)
+    // let reducedSearchArray = searchHistArray.splice(8)
+    console.log(searchHistArray)
+    // console.log(reducedSearchArray)
 
     dateHistBtn = $(`<button class="btn bgBlue text-light btn-block mb-3 histBtn" id="searchBtn">${dateDisp}</button>`)
     
